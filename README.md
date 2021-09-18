@@ -20,7 +20,7 @@ C:\Work
 ├───Example              <- Empty directory, wouldn't be pushed to git.
 └───HelloWorld.java
 
-C:\Work>gk.exe
+C:\Work>gk.exe           <- Running the tool
 C:\Work
 C:\Work\Example
     Directory c:\Work\Example contains no files or subfolders, i'll create an .gitkeep ...
@@ -47,7 +47,7 @@ C:\Work
 │   └───HanSolo.json
 └───HelloWorld.java
 
-C:\Work>gk
+C:\Work>gk.exe           <- Running the tool
 C:\Work
 C:\Work\Example
     Directory c:\Work\Example contains an obsolete .gitkeep ...
