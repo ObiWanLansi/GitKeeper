@@ -34,13 +34,13 @@ namespace GitKeeper
 
         private static void ScanDirectory( DirectoryInfo diCurrent )
         {
-            Console.Out.WriteLineAsync(diCurrent.FullName);
+            Console.Out.WriteLineAsync($"Scanning {diCurrent.FullName}");
 
             FileSystemInfo [] childs = diCurrent.GetFileSystemInfos();
 
             if( childs.Length == 0 )
             {
-                Console.Out.WriteLineAsync($"    Directory {diCurrent.FullName} contains no files or subfolders, i'll create an {GITKEEP} ...");
+                Console.Out.WriteLineAsync($"    The directory '{diCurrent.FullName}' contains no files or subfolders, i'll create an {GITKEEP}");
                 File.WriteAllBytes($"{diCurrent.FullName}\\{GITKEEP}", new byte [] { });
                 return;
             }
@@ -62,12 +62,13 @@ namespace GitKeeper
 
             if( ContainsGitKeep(childs) && childs.Length > 1 )
             {
-                Console.Out.WriteLineAsync($"    Directory {diCurrent.FullName} contains an obsolete {GITKEEP} ...");
+                Console.Out.WriteLineAsync($"    The directory '{diCurrent.FullName}' contains an obsolete {GITKEEP}");
                 File.Delete($"{diCurrent.FullName}\\{GITKEEP}");
             }
         }
 
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
         static void Main( string [] args ) => ScanDirectory(new DirectoryInfo(Environment.CurrentDirectory));
     }
