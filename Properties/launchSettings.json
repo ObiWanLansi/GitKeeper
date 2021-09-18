@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GitKeeper": {
+      "commandName": "Project",
+      "workingDirectory": "O:\\DoofesZeug"
+    }
+  }
+}
