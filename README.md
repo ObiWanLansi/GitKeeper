@@ -1,11 +1,10 @@
 # Git Keeper
 
-GitKeeper is an small tool in .net core to create `.gitkeep` files in empty directory and remove
+GitKeeper is an small tool written in C# with `.net core 5` to create `.gitkeep` files in empty directory and remove
 `.gitkeep` files in directory with one ore more other files.
 
-Sometimes i create empty directories as reminder or because other tools need this directories.
-When i made lot's of changes in a directory structure or adding/removing files, and i want to commit
-my stuff, i running the GitKeeper again quickly.
+Sometimes i create empty directories as reminder (e.g. for namespaces) or because other third party tools need this empty directories.
+When i made lot's of changes in a directory structure or adding/removing files, and i want to commit my stuff, i running the GitKeeper again quickly.
 
 ## Add new .gitkeep files
 
