@@ -15,14 +15,14 @@ namespace GitKeeper
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        private static bool IgnoreDirectory( DirectoryInfo di ) => IGNORE.Contains(di.Name.ToLower());
+        private static bool IgnoreDirectory(DirectoryInfo di) => IGNORE.Contains(di.Name.ToLower());
 
 
-        private static bool ContainsGitKeep( FileSystemInfo [] childs )
+        private static bool ContainsGitKeep(FileSystemInfo[] childs)
         {
-            foreach( FileSystemInfo fi in childs )
+            foreach (FileSystemInfo fi in childs)
             {
-                if( fi.Name.Equals(GITKEEP) )
+                if (fi.Name.Equals(GITKEEP))
                 {
                     return true;
                 }
@@ -32,27 +32,27 @@ namespace GitKeeper
         }
 
 
-        private static void ScanDirectory( DirectoryInfo diCurrent )
+        private static void ScanDirectory(DirectoryInfo diCurrent)
         {
             Console.Out.WriteLineAsync($"Scanning {diCurrent.FullName}");
 
-            FileSystemInfo [] childs = diCurrent.GetFileSystemInfos();
+            FileSystemInfo[] childs = diCurrent.GetFileSystemInfos();
 
-            if( childs.Length == 0 )
+            if (childs.Length == 0)
             {
                 Console.Out.WriteLineAsync($"    The directory '{diCurrent.FullName}' contains no files or subfolders, i'll create an {GITKEEP}");
-                File.WriteAllBytes($"{diCurrent.FullName}\\{GITKEEP}", new byte [] { });
+                File.WriteAllBytes($"{diCurrent.FullName}\\{GITKEEP}", new byte[] { });
                 return;
             }
 
-            foreach( DirectoryInfo diChild in diCurrent.GetDirectories() )
+            foreach (DirectoryInfo diChild in diCurrent.GetDirectories())
             {
-                if( diChild.Name [0] == '.' )
+                if (diChild.Name[0] == '.')
                 {
                     continue;
                 }
 
-                if( IgnoreDirectory(diChild) )
+                if (IgnoreDirectory(diChild))
                 {
                     continue;
                 }
@@ -60,7 +60,7 @@ namespace GitKeeper
                 ScanDirectory(diChild);
             }
 
-            if( ContainsGitKeep(childs) && childs.Length > 1 )
+            if (ContainsGitKeep(childs) && childs.Length > 1)
             {
                 Console.Out.WriteLineAsync($"    The directory '{diCurrent.FullName}' contains an obsolete {GITKEEP}");
                 File.Delete($"{diCurrent.FullName}\\{GITKEEP}");
@@ -70,6 +70,6 @@ namespace GitKeeper
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        static void Main( string [] args ) => ScanDirectory(new DirectoryInfo(Environment.CurrentDirectory));
+        static void Main(string[] args) => ScanDirectory(new DirectoryInfo(Environment.CurrentDirectory));
     }
 }
