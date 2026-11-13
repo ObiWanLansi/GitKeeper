@@ -40,7 +40,7 @@ static class GitKeeper
         if (childs.Length == 0)
         {
             Console.Out.WriteLineAsync($"    The directory '{diCurrent.FullName}' contains no files or subfolders, i'll create an {GITKEEP}");
-            File.WriteAllBytes($"{diCurrent.FullName}\\{GITKEEP}", Array.Empty<byte>());
+            File.WriteAllBytes($"{diCurrent.FullName}{Path.DirectorySeparatorChar}{GITKEEP}", Array.Empty<byte>());
             return;
         }
 
@@ -62,7 +62,7 @@ static class GitKeeper
         if (ContainsGitKeep(childs) && childs.Length > 1)
         {
             Console.Out.WriteLineAsync($"    The directory '{diCurrent.FullName}' contains an obsolete {GITKEEP}");
-            File.Delete($"{diCurrent.FullName}\\{GITKEEP}");
+            File.Delete($"{diCurrent.FullName}{Path.DirectorySeparatorChar}{GITKEEP}");
         }
     }
 

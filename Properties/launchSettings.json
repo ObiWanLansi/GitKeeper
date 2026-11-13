@@ -2,7 +2,7 @@
   "profiles": {
     "GitKeeper": {
       "commandName": "Project",
-      "workingDirectory": "O:\\DoofesZeug"
+      "workingDirectory": "O:\\GitKeeper"
     }
   }
 }
